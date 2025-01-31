@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from bs4 import BeautifulSoup
 import requests
 app = Flask("JObScrapper")
-
 @app.route("/") # decorator
 def home():
     return render_template("home.html")
@@ -29,8 +28,8 @@ def search():
             'title': title,
             'company': company.text,
             'position': position.text,
-            'region': "No Region" if not len(region) else region[0].text,
-            "url": f"https://weworkremotelly.com{url}"
+            'location': "No Location" if not len(region) else region[0].text,
+            "link": f"https://weworkremotelly.com{url}"
         }
         if keyword in job_data['title']:
             job_db.append(job_data)
